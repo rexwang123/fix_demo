@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import AlamofireImage
 
 class SuperheroViewController: UIViewController, UICollectionViewDataSource {
     
@@ -16,10 +17,12 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
     var movies: [[String: Any]] = []
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-        refreshControl.addTarget(self, action: #selector(SuperheroViewController.didPullToRefresh(_:)), for: .valueChanged)
-        collectionView.insertSubview(refreshControl, at:0)
+        fetchMovies()
         collectionView.dataSource = self
+        /*
+         refreshControl.addTarget(self, action: #selector(SuperheroViewController.didPullToRefresh(_:)), for: .valueChanged)
+         collectionView.insertSubview(refreshControl, at:0)
+         */
         // Do any additional setup after loading the view.
     }
     
@@ -35,9 +38,10 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
         let movie = movies[indexPath.item]
         if  let posterPathString = movie["poster_path"] as? String{
             let baseURLString = "https://image.tmdb.org/t/p/w500"
-            let posterURL = URL(string:baseURLString+posterPathString)
-            
+            let posterURL = URL(string:baseURLString+posterPathString)!
+            cell.posterImageView.af_setImage(withURL: posterURL)
         }
+        return cell
     }
     
     func fetchMovies(){
@@ -55,7 +59,8 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
                 
                 self.movies = movies
                 self.collectionView.reloadData()
-                self.refreshControl.endRefreshing()
+                
+                //self.refreshControl.endRefreshing()
             }
         }
         task.resume()
@@ -77,3 +82,4 @@ class SuperheroViewController: UIViewController, UICollectionViewDataSource {
      */
     
 }
+
