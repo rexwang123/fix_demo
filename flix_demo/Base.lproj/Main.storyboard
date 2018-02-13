@@ -160,6 +160,7 @@
                                         </view>
                                         <connections>
                                             <outlet property="posterImageView" destination="3ef-1T-wnC" id="H5F-CU-B40"/>
+                                            <segue destination="IZ2-EC-3ce" kind="show" id="9S7-44-Z28"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>
@@ -175,7 +176,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="bIJ-0U-aIZ" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="501.44927536231887" y="748.36956521739137"/>
+            <point key="canvasLocation" x="1526" y="748"/>
         </scene>
         <!--Nice Movie-->
         <scene sceneID="69H-nE-YsC">
@@ -240,4 +241,7 @@
         <image name="now_playing_tabbar_item" width="21" height="21"/>
         <image name="superhero_tabbar_item" width="21" height="23"/>
     </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="9S7-44-Z28"/>
+    </inferredMetricsTieBreakers>
 </document>
